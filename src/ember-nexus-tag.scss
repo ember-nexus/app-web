@@ -1,0 +1,15 @@
+@use "@material/chips/styles";
+@use "@material/circular-progress/mdc-circular-progress";
+
+
+.mdc-evolution-chip__graphic {
+  left: -5px;
+}
+
+.mdc-evolution-chip {
+  background: var(--ember-nexus-tag-color, rgb(224, 224, 224));
+}
+
+.mdc-evolution-chip .mdc-evolution-chip__text-label {
+  color: var(--ember-nexus-tag-text-color, #000);
+}
