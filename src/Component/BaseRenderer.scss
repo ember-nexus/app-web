@@ -1,0 +1,68 @@
+@use "@material/typography/mdc-typography";
+@use "@material/typography/typography";
+@use "@material/card";
+@use "@material/icon-button/styles";
+@use "@material/circular-progress/mdc-circular-progress";
+@use "@material/button/styles" as wip;
+
+@include card.core-styles;
+
+
+.content {
+  padding: 0 1rem 1rem 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.icon {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.type {
+  @include typography.typography('body1');
+  font-family: 'Fira Code', 'Roboto Mono', Monaco, courier, monospace;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+.type-relation {
+  padding: 0 8px;
+}
+
+.row-title {}
+
+.row-type {
+  gap: 0;
+}
+
+.row-description {
+  margin-top: 0.5rem;
+}
+
+.row-tags {}
+
+.mdc-button {
+  min-width: 0;
+  user-select: auto;
+}
