@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import {BaseRenderer} from "../Component/BaseRenderer.ts";
+import {BaseRenderer} from "../Component/BaseRenderer/BaseRenderer.ts";
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta: Meta<typeof BaseRenderer> = {
@@ -8,6 +8,7 @@ const meta: Meta<typeof BaseRenderer> = {
   render: () => new BaseRenderer(),
   component: 'ember-nexus-base-renderer',
   argTypes: {
+    // @ts-ignore
     uuid: {
       control: {
         type: 'text'
@@ -29,5 +30,5 @@ type Story = StoryObj<typeof BaseRenderer>;
 
 export const Primary: Story = Template.bind({});
 Primary.args = {
-  uuid: '6b8341ca-851a-4e98-8194-e57b87d30519'
+  uuid: 'b372cda0-91df-4ea3-9a59-eb713b62a5ef'
 };
