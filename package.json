@@ -15,6 +15,7 @@
     "@material/web": "^1.0.0-pre.9",
     "@types/chroma-js": "^2.4.0",
     "@types/codemirror": "^5.60.8",
+    "@vaadin/router": "^1.7.5",
     "chroma-js": "^2.4.2",
     "codemirror": "^6.0.1",
     "lit": "^2.6.1",

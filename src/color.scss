@@ -1,0 +1,12 @@
+@use "@material/theme/color-palette.import" as color;
+
+
+$color-neutral-darkest: #000;
+$color-neutral-darker: color.$material-color-grey-900;
+$color-neutral-dark: color.$material-color-grey-700;
+$color-neutral: color.$material-color-grey-500;
+$color-neutral-light: color.$material-color-grey-300;
+$color-neutral-lighter: color.$material-color-grey-100;
+$color-neutral-lightest: #fff;
+
+$color-primary: #d82739;

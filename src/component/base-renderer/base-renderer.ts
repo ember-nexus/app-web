@@ -1,6 +1,6 @@
 import {LitElement, html, unsafeCSS} from 'lit'
 import {customElement, property} from 'lit/decorators.js'
-import styles from './BaseRenderer.scss?inline';
+import styles from './base-renderer.scss?inline';
 import {interpret, Interpreter} from "xstate";
 import GetElementEvent from "@ember-nexus/web-sdk/dist/Event/GetElementEvent";
 import Node from "@ember-nexus/web-sdk/src/Type/Node";
@@ -11,8 +11,7 @@ import {
   ElementContext,
   default as ElementMachine,
   StartLoadedEvent, UpdateUuidEvent
-} from "../../Machine/ElementMachine.ts";
-import GetRelatedEvent from "@ember-nexus/web-sdk/dist/Event/GetRelatedEvent";
+} from "../../machine/element-machine.ts";
 
 
 

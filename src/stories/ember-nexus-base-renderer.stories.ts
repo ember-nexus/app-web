@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import {BaseRenderer} from "../Component/BaseRenderer/BaseRenderer.ts";
+import {BaseRenderer} from "../component/base-renderer/base-renderer.ts";
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta: Meta<typeof BaseRenderer> = {

@@ -1,0 +1,98 @@
+@use "@material/typography/mdc-typography";
+@use "@material/typography/typography";
+@use "@material/icon-button/styles";
+@use "@material/circular-progress/mdc-circular-progress";
+@use "@material/button/styles" as wip;
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/textfield";
+@import "../../color";
+@include textfield.core-styles;
+
+header {
+  display: grid;
+  grid-template-columns: 1rem 1fr 1rem minmax(auto, 800px) 1rem 1fr 1rem;
+  grid-template-rows: 2rem 3rem 2rem;
+  grid-template-areas:
+          ". . . . . . ."
+          ". title . search . action ."
+          ". . . . . . ."
+;
+  align-items: center;
+  background: $color-neutral-lightest;
+}
+
+@media only screen and (max-width: 600px) {
+  header {
+    grid-template-columns: 1rem auto 1rem auto 1rem;
+    grid-template-rows: 1rem 3rem 1rem 3rem 1rem;
+    grid-template-areas:
+          ". . . . ."
+          ". title . action ."
+          ". . . . ."
+          ". search search search ."
+          ". . . . ."
+  ;
+  }
+}
+
+.area-title {
+  grid-area: title;
+  justify-self: start;
+}
+
+.area-search {
+  grid-area: search;
+  justify-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.area-action {
+  grid-area: action;
+  justify-self: end;
+  background: $color-neutral-lighter;
+  border-radius: 1.5rem;
+  display: flex;
+}
+
+.background-grey {
+  background-color: $color-neutral-lighter;
+}
+
+button.background-grey {
+  border-radius: 50%;
+}
+
+header .searchbar {
+  flex-grow: 1;
+  @include textfield.outline-shape-radius(24px);
+  @include textfield.outlined-height(48px);
+  @include textfield.focused-outline-color($color-primary);
+  @include textfield.outline-color($color-neutral);
+  @include textfield.outline-color(transparent);
+  border-radius: 1.5rem;
+  background-color: $color-neutral-lighter !important;
+  &.mdc-text-field--focused:not(.mdc-text-field--disabled) {
+    background-color: $color-neutral-lightest !important;
+  }
+  &.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: $color-primary;
+  }
+  .mdc-text-field__icon {
+    .icon {
+      width: 24px;
+      height: 24px;
+      transition: fill 67ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    &:hover .icon {
+      fill: $color-primary;
+    }
+  }
+}
+
+//.mdc-text-field .mdc-notched-outline__leading {
+//  border-radius: 1000px !important;
+//}
