@@ -2,8 +2,8 @@ import {LitElement, html, unsafeCSS} from 'lit'
 import {customElement} from 'lit/decorators.js'
 import styles from './header.scss?inline';
 import {MDCTextField} from '@material/textfield';
-import {MDCTextFieldIcon} from '@material/textfield/icon';
-import {MDCIconButtonToggle} from '@material/icon-button';
+// import {MDCTextFieldIcon} from '@material/textfield/icon';
+// import {MDCIconButtonToggle} from '@material/icon-button';
 
 
 
@@ -14,8 +14,8 @@ export class Header extends LitElement {
 
   protected firstUpdated() {
     new MDCTextField(this.shadowRoot.querySelector('.mdc-text-field'));
-    new MDCTextFieldIcon(this.shadowRoot.querySelector('.mdc-text-field-icon'));
-    new MDCIconButtonToggle(this.shadowRoot.querySelector('.mdc-icon-button'));
+    // new MDCTextFieldIcon(this.shadowRoot.querySelector('.mdc-text-field-icon'));
+    // new MDCIconButtonToggle(this.shadowRoot.querySelector('.mdc-icon-button'));
   }
 
   render() {
@@ -46,11 +46,11 @@ export class Header extends LitElement {
                   aria-pressed="true">
             <div class="mdc-icon-button__ripple"></div>
             <span class="mdc-icon-button__focus-ring"></span>
-            <svg class="mdc-icon-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="mdc-icon-button__icon mdc-icon-button__icon--on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>pencil</title>
               <path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
             </svg>
-            <svg class="mdc-icon-button__icon mdc-icon-button__icon--on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <svg class="mdc-icon-button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <title>pencil-off</title>
               <path d="M18.66,2C18.4,2 18.16,2.09 17.97,2.28L16.13,4.13L19.88,7.88L21.72,6.03C22.11,5.64 22.11,5 21.72,4.63L19.38,2.28C19.18,2.09 18.91,2 18.66,2M3.28,4L2,5.28L8.5,11.75L4,16.25V20H7.75L12.25,15.5L18.72,22L20,20.72L13.5,14.25L9.75,10.5L3.28,4M15.06,5.19L11.03,9.22L14.78,12.97L18.81,8.94L15.06,5.19Z" />
             </svg>
