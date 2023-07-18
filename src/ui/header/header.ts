@@ -12,7 +12,7 @@ export class Header extends LitElement {
 
   static styles = unsafeCSS(styles);
 
-  protected firstUpdated() {
+  firstUpdated() {
     new MDCTextField(this.shadowRoot.querySelector('.mdc-text-field'));
     // new MDCTextFieldIcon(this.shadowRoot.querySelector('.mdc-text-field-icon'));
     // new MDCIconButtonToggle(this.shadowRoot.querySelector('.mdc-icon-button'));

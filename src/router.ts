@@ -1,5 +1,6 @@
 import {Router} from '@vaadin/router';
-import {Index} from "./page/index";
+import {Index} from "./page/index/index.ts";
+import {Search} from "./page/search/search.ts";
 import {Logger} from "tslog";
 import Options from "@ember-nexus/web-sdk/dist/Options";
 import EmberNexus from "@ember-nexus/web-sdk";
@@ -21,7 +22,8 @@ window.emberNexus = emberNexus;
 const router = new Router(document.getElementById('app'));
 router.setRoutes([
   {path: '/', component: 'ember-nexus-page-index'},
+  {path: '/search', component: 'ember-nexus-page-search'},
 ]);
 
 export default router;
-export {Index};
+export {Index, Search};
