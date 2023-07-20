@@ -1,0 +1,25 @@
+.content {
+  display: grid;
+  grid-template-columns: 1rem 1fr [content-start] minmax(auto, 800px) [content-end] 1fr 1rem;
+  //grid-template-rows: repeat(auto-fill, 1rem auto);
+  grid-row-gap: 1rem;
+  //gap: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  grid-template-areas:
+          ". . content . ."
+;
+  grid-auto-flow: column;
+}
+
+//@media only screen and (max-width: 600px) {
+//  .content {
+//    grid-template-columns: 1rem 0 0 1fr 0 0 1rem;
+//  ;
+//  }
+//}
+
+.content > * {
+  grid-column: content;
+  //grid-row: content;
+}

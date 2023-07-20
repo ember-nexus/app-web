@@ -23,7 +23,7 @@
     "xstate": "^4.37.2"
   },
   "devDependencies": {
-    "@ember-nexus/web-sdk": "^0.0.36",
+    "@ember-nexus/web-sdk": "^0.0.38",
     "@storybook/addon-a11y": "^7.0.18",
     "@storybook/addon-essentials": "^7.0.18",
     "@storybook/addon-links": "^7.0.18",
