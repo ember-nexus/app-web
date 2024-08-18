@@ -1,0 +1,26 @@
+{
+  "name": "@ember-nexus/app-web",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">= 22.0"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "author": "Syndesi <info@ember-nexus.dev>",
+  "license": "AGPL-3.0-only",
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "nuxt": "^3.12.4",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "vite-plugin-vuetify": "^2.0.4",
+    "vuetify": "^3.6.14"
+  }
+}
