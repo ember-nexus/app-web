@@ -1,0 +1,134 @@
+name: Test
+
+on:
+  - push
+
+jobs:
+
+  yml-lint:
+    runs-on: ubuntu-latest
+    name: 'YML lint'
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker pull cytopia/yamllint
+      - run: docker run --rm -t -v $(pwd):/data cytopia/yamllint --config-file=test/.yamllint .
+
+  markdown-lint:
+    runs-on: ubuntu-latest
+    name: 'Markdown lint'
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker pull tmknom/markdownlint
+      - run: docker run --rm -v $(pwd):/work tmknom/markdownlint '**/*.md' --config test/.markdownlintrc --ignore node_modules --ignore CHANGELOG.md --ignore var --ignore tmp
+
+  code-style:
+    runs-on: ubuntu-latest
+    name: 'Code style @ Node v${{ matrix.node-version }}'
+    needs:
+      - yml-lint
+      - markdown-lint
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20', '21', '22']
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '${{ matrix.node-version }}'
+      - uses: actions/checkout@v4
+      - name: 'Cache node_modules'
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-v${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-v${{ matrix.node-version }}-
+      - name: Install dependencies
+        run: yarn install --dev
+      - name: Run syntax linter
+        run: yarn cs
+
+#  test-unit:
+#    runs-on: ubuntu-latest
+#    name: 'Unit tests @ Node v${{ matrix.node-version }}'
+#    needs:
+#      - yml-lint
+#      - markdown-lint
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        node-version: ['20', '21', '22']
+#    steps:
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: '${{ matrix.node-version }}'
+#      - uses: actions/checkout@v4
+#      - name: 'Cache node_modules'
+#        uses: actions/cache@v4
+#        with:
+#          path: ~/.npm
+#          key: ${{ runner.os }}-node-v${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+#          restore-keys: |
+#            ${{ runner.os }}-node-v${{ matrix.node-version }}-
+#      - name: Install dependencies
+#        run: yarn install --dev
+#      - name: Run unit tests
+#        run: yarn test:unit
+#
+#  test-feature:
+#    runs-on: ubuntu-latest
+#    name: 'Feature tests @ Node v${{ matrix.node-version }}'
+#    needs:
+#      - yml-lint
+#      - markdown-lint
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        node-version: ['20', '21', '22']
+#    if: false
+#    steps:
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: '${{ matrix.node-version }}'
+#      - uses: actions/checkout@v4
+#      - name: 'Cache node_modules'
+#        uses: actions/cache@v4
+#        with:
+#          path: ~/.npm
+#          key: ${{ runner.os }}-node-v${{ matrix.node-version }}-${{ hashFiles('**/package.json') }}
+#          restore-keys: |
+#            ${{ runner.os }}-node-v${{ matrix.node-version }}-
+#      - name: Install dependencies
+#        run: yarn install --dev
+#      - name: Run feature tests
+#        run: yarn test:feature
+#
+#  test-unit-coverage:
+#    runs-on: ubuntu-latest
+#    name: 'Unit test coverage'
+#    needs:
+#      - test-unit
+#    steps:
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: '22'
+#      - uses: actions/checkout@v4
+#      - name: 'Cache node_modules'
+#        uses: actions/cache@v4
+#        with:
+#          path: ~/.npm
+#          key: ${{ runner.os }}-node-v22-${{ hashFiles('**/package.json') }}
+#          restore-keys: |
+#            ${{ runner.os }}-node-v22-
+#      - name: Install dependencies
+#        run: yarn install --dev
+#      - name: Run unit tests
+#        run: yarn test:unit
+#      - name: Upload coverage reports to Codecov
+#        uses: codecov/codecov-action@v4
+#        with:
+#          fail_ci_if_error: true
+#          files: ./coverage/cobertura-coverage.xml
+#          token: ${{ secrets.CODECOV_TOKEN }}
