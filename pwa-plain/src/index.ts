@@ -1,10 +1,11 @@
 import 'reflect-metadata';
 import { Container } from 'typedi';
-import {RouteManager} from "./Service/RouteManager";
-import {RouteConfiguration} from "./Type/Definition/RouteConfiguration";
-import {validatePluginIdFromString} from "./Type/Definition/PluginId";
-import {validateRouteIdFromString} from "./Type/Definition/RouteId";
-import {buildCombinedPluginIdRouteIdFromComponents} from "./Type/Definition/CombinedPluginIdRouteId";
+
+import { RouteManager } from './Service/RouteManager';
+import { buildCombinedPluginIdRouteIdFromComponents } from './Type/Definition/CombinedPluginIdRouteId';
+import { validatePluginIdFromString } from './Type/Definition/PluginId';
+import { RouteConfiguration } from './Type/Definition/RouteConfiguration';
+import { validateRouteIdFromString } from './Type/Definition/RouteId';
 
 export * as Error from './Error';
 // export * as Page from './Page';
@@ -12,22 +13,19 @@ export * as Service from './Service';
 export * as Type from './Type';
 export { Container };
 
-console.log("Hello world :D");
+console.log('Hello world :D');
 
-
-
-const routeManager = new RouteManager();
-
-routeManager.debugRoutes();
+const routeManager = Container.get(RouteManager);
 
 const pluginId = validatePluginIdFromString('ember-nexus');
 
-const route1 : RouteConfiguration = {
+const route1: RouteConfiguration = {
   pluginId: pluginId,
   routeId: validateRouteIdFromString('route1'),
   route: '/route1',
   priority: 100,
-  webComponent: 'ember-nexus-route1'
+  webComponent: 'ember-nexus-route1',
+  guards: [],
 };
 
 // const route1copy : RouteConfiguration = {
@@ -35,39 +33,44 @@ const route1 : RouteConfiguration = {
 //   routeId: validateRouteIdFromString('route1-copy'),
 //   route: '/route1',
 //   priority: 500,
-//   webComponent: 'ember-nexus-route1-copy'
+//   webComponent: 'ember-nexus-route1-copy',
+//   guards: []
 // };
 
-const route2 : RouteConfiguration = {
+const route2: RouteConfiguration = {
   pluginId: pluginId,
   routeId: validateRouteIdFromString('route2'),
   route: '/route2',
   priority: 200,
-  webComponent: 'ember-nexus-route2'
+  webComponent: 'ember-nexus-route2',
+  guards: [],
 };
 
-const route3 : RouteConfiguration = {
+const route3: RouteConfiguration = {
   pluginId: pluginId,
   routeId: validateRouteIdFromString('route3'),
   route: '/route3',
   priority: 100,
-  webComponent: 'ember-nexus-route3'
+  webComponent: 'ember-nexus-route3',
+  guards: [],
 };
 
-const route4 : RouteConfiguration = {
+const route4: RouteConfiguration = {
   pluginId: pluginId,
   routeId: validateRouteIdFromString('route4'),
   route: '/route4',
   priority: 100,
-  webComponent: 'ember-nexus-route4'
+  webComponent: 'ember-nexus-route4',
+  guards: [],
 };
 
-const route5 : RouteConfiguration = {
+const route5: RouteConfiguration = {
   pluginId: pluginId,
   routeId: validateRouteIdFromString('route5'),
   route: '/route5',
   priority: 100,
-  webComponent: 'ember-nexus-route5'
+  webComponent: 'ember-nexus-route5',
+  guards: [],
 };
 
 routeManager.addRouteConfiguration(route1);
@@ -79,7 +82,3 @@ routeManager.removeRouteConfiguration(buildCombinedPluginIdRouteIdFromComponents
 routeManager.addRouteConfiguration(route5);
 
 console.log(routeManager.matchRoute('/route1'));
-
-routeManager.debugRoutes();
-
-

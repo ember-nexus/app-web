@@ -1,5 +1,5 @@
-import {Branded} from "./Branded";
-import {ParseError} from "../../Error/ParseError";
+import { Branded } from './Branded';
+import { ParseError } from '../../Error/ParseError';
 
 type PluginId = Branded<string, 'pluginId'>;
 
