@@ -7,6 +7,7 @@ import { Container } from 'typedi';
 import {Logger} from '../../../src/Service/Logger';
 import {validateRouteIdFromString} from "../../../src/Type/Definition/RouteId";
 import {buildCombinedPluginIdRouteIdFromComponents} from "../../../src/Type/Definition/CombinedPluginIdRouteId";
+import {ParamData} from "path-to-regexp";
 
 describe('RouteManager tests', () => {
   let sandbox: SinonSandbox;
@@ -519,6 +520,34 @@ describe('RouteManager tests', () => {
     expect(result?.route).to.equal('/test');
     expect(result?.pluginId).to.equal('plugin');
     expect(result?.routeId).to.equal('route-2');
+  });
+
+  it('should match route with regex guard function', async () => {
+    const routeManager = Container.get(RouteManager);
+
+    routeManager.addRouteConfiguration({
+      pluginId: validatePluginIdFromString('plugin'),
+      routeId: validateRouteIdFromString('route'),
+      route: '/:id/test',
+      priority: 0,
+      webComponent: 'some-web-component',
+      guards: [
+        (_route: string, routeParameters: ParamData) => {
+          const idRegex = /\d+/;
+          return idRegex.test(routeParameters['id'] as string);
+        }
+      ]
+    });
+
+    expect(routeManager.getAllRouteConfigurations()).to.have.length(1);
+    const result1 = routeManager.matchRoute('/1234/test');
+    expect(result1).to.not.be.null;
+    expect(result1?.route).to.equal('/:id/test');
+    expect(result1?.pluginId).to.equal('plugin');
+    expect(result1?.routeId).to.equal('route');
+
+    const result2 = routeManager.matchRoute('/abcd/test');
+    expect(result2).to.be.null;
   });
 
 });
