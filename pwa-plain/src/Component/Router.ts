@@ -1,13 +1,13 @@
 import { LitElement, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-@customElement('ember-nexus-layout-page')
-class PageLayout extends LitElement {
+@customElement('ember-nexus-router')
+class Router extends LitElement {
   render(): TemplateResult {
     return html`<div>
-      <p>Page Layout :D</p>
+      <p>Router :D</p>
     </div>`;
   }
 }
 
-export { PageLayout };
+export { Router };

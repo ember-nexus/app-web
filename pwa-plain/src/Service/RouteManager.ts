@@ -116,25 +116,33 @@ class RouteManager {
     return this;
   }
 
-  matchRoute(route: string): RouteConfiguration | null {
-    this.logger.debug(`Route Manager: Trying to match route ${route}.`);
-    for (let i = this.priorityList.length - 1; i >= 0; --i) {
-      for (let j = 0; j < this.priorityList[i].routes.length; j++) {
-        const combinedPluginIdRouteId = this.priorityList[i].routes[j];
-        const routeMatchResult = this.matchFunctionList[combinedPluginIdRouteId](route) as Match<ParamData>;
-        if (routeMatchResult !== false) {
-          const resultOfGuardFunctions = this.routeDict[combinedPluginIdRouteId].guards.every((guard) =>
-            guard(route, routeMatchResult.params),
-          );
-          if (!resultOfGuardFunctions) {
-            continue;
+  async matchRoute(route: string): Promise<RouteConfiguration> {
+    return Promise.resolve().then(async () => {
+      this.logger.debug(`Route Manager: Trying to match route ${route}.`);
+      for (let i = this.priorityList.length - 1; i >= 0; --i) {
+        for (let j = 0; j < this.priorityList[i].routes.length; j++) {
+          const combinedPluginIdRouteId = this.priorityList[i].routes[j];
+          const routeMatchResult = this.matchFunctionList[combinedPluginIdRouteId](route) as Match<ParamData>;
+          if (routeMatchResult !== false) {
+            try {
+              const executedGuardFunctions = await Promise.all(
+                this.routeDict[combinedPluginIdRouteId].guards.map((guard) => guard(route, routeMatchResult.params)),
+              );
+              const resultOfGuardFunctions = executedGuardFunctions.every((result) => result === true);
+              if (!resultOfGuardFunctions) {
+                continue;
+              }
+              return Promise.resolve(this.routeDict[combinedPluginIdRouteId]);
+            } catch (error) {
+              this.logger.error(`Error in guard function: ${error}`);
+            }
           }
-          return this.routeDict[combinedPluginIdRouteId];
         }
       }
-    }
-    this.logger.debug(`Route Manager: Unable to find route configuration for route ${route}.`);
-    return null;
+      const errorMessage = `Route Manager: Unable to find route configuration for route ${route}.`;
+      this.logger.debug(errorMessage);
+      return Promise.reject(errorMessage);
+    });
   }
 }
 

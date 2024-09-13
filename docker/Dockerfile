@@ -134,7 +134,7 @@ RUN set -eux; \
 		\
 # --enable-mbstring is included here because otherwise there's no way to get pecl to use it properly (see https://github.com/docker-library/php/issues/195)
 		--enable-mbstring \
-# XXX included due to https://github.com/ember-nexus/api/issues/294 \
+# XXX included due to https://github.com/ember-nexus/api/issues/294 (original docker image source) \
         --enable-opcache \
 # https://wiki.php.net/rfc/argon2_password_hash
 		--with-password-argon2 \
@@ -276,19 +276,18 @@ FROM php_embed AS php
 LABEL org.opencontainers.image.vendor="Ember Nexus" \
     org.opencontainers.image.authors="Sören Klein / Syndesi <soerenklein98@gmail.com>" \
     org.opencontainers.image.licenses="AGPL-3.0-only" \
-    org.opencontainers.image.source="https://github.com/ember-nexus/api" \
+    org.opencontainers.image.source="https://github.com/ember-nexus/app-web" \
     org.opencontainers.image.title="API" \
-    org.opencontainers.image.description="Knowledge Graph API."
+    org.opencontainers.image.description="Default frontend app for Ember Nexus"
 # The environment variable VERSION is set to dev by default, only release builds get their actual release version set.
 # Background: If the en user uses the dev mode, it is epected that he knows what he does.
 ARG VERSION=dev
 ENV VERSION=${VERSION}
 
 RUN apk add pcre-dev ${PHPIZE_DEPS} curl-dev openssl-dev \
-    && pecl install mongodb \
     && docker-php-ext-configure intl \
-    && docker-php-ext-install intl bcmath sockets zip \
-    && docker-php-ext-enable mongodb intl bcmath sockets zip \
+    && docker-php-ext-install intl zip \
+    && docker-php-ext-enable intl zip \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apk del pcre-dev ${PHPIZE_DEPS} curl-dev openssl-dev
 
@@ -341,9 +340,9 @@ FROM scratch AS production
 LABEL org.opencontainers.image.vendor="Ember Nexus" \
     org.opencontainers.image.authors="Sören Klein / Syndesi <soerenklein98@gmail.com>" \
     org.opencontainers.image.licenses="AGPL-3.0-only" \
-    org.opencontainers.image.source="https://github.com/ember-nexus/api" \
+    org.opencontainers.image.source="https://github.com/ember-nexus/app-web" \
     org.opencontainers.image.title="API" \
-    org.opencontainers.image.description="Knowledge Graph API."
+    org.opencontainers.image.description="Default frontend app for Ember Nexus"
 # The environment variable VERSION is set to dev by default, only release builds get their actual release version set.
 # Background: If the en user uses the dev mode, it is epected that he knows what he does.
 ARG VERSION=dev

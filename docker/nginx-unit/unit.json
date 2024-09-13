@@ -4,53 +4,22 @@
             "server_version": false
         }
     },
-
     "listeners": {
         "*:80": {
             "pass": "routes"
         }
     },
-
     "routes": [
         {
-            "match": {
-                "uri": [
-                    "*.php",
-                    "*.php/*"
-                ]
-            },
-
             "action": {
-                "pass": "applications/symfony/direct"
-            }
-        },
-        {
-            "action": {
-                "share": "/var/www/html/public$uri",
-                "fallback": {
-                    "pass": "applications/symfony/index"
-                },
+                "share": [
+                    "/var/www/html/public$uri",
+                    "/var/www/html/public/index.html"
+                ],
                 "response_headers": {
                     "Set-Cookie": null
                 }
             }
         }
-    ],
-
-    "applications": {
-        "symfony": {
-            "type": "php",
-            "targets": {
-                "direct": {
-                    "root": "/var/www/html/public/"
-                },
-
-                "index": {
-                    "root": "/var/www/html/public/",
-                    "script": "index.php"
-                }
-            },
-            "processes": 6
-        }
-    }
+    ]
 }
