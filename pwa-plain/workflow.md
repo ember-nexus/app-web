@@ -99,3 +99,25 @@ The following pages should be included by default, or through default plugins:
 ## Plugins
 
 - Plugins should provide an instance of an object, which is responsible for receiving events and acting on them.
+
+## Page scrolling
+
+There are different scenarios which require different scrolling and UI handling.
+
+- PWA menu might be rendered on one or two of the sides (top, left, right, bottom).
+  This does not specify the rendering solution, but reduces screen space.
+- PWA menu might be rendered all around, which likely limits to in page scrolling.
+- Depending on the scenario, the PWA menu might be collapsible, which gives a page more screen space.
+- When only one page is shown, then the app can decide whether to use browser scrolling or in page scrolling.
+- When multiple apps are shown, then all of them should use in page scrolling.
+- Maybe for a later release: The in-page-scroll-position might be linked to another page's scroll position, if
+  supported.
+
+Requirements for pages:
+
+- Page must be able to display/use its own scroll bars
+- Page should accept web component property `XXX` to switch to self scrollbar mode, or be already in it
+- Page configurations can communicate the following properties:
+  - w
+
+
