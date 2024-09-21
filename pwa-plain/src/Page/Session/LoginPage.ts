@@ -15,6 +15,8 @@ class LoginPage extends LitElement {
       <p>Link to help page, if any</p>
       <p>Link to register page, if enabled</p>
       <p>Link to special token login page?</p>
+      <hr/>
+      <ember-nexus-core-text-input></ember-nexus-core-text-input>
     </div>`;
   }
 }
