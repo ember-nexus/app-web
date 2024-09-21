@@ -57,15 +57,6 @@ routeManager.addRouteConfiguration({
   guards: [],
 });
 
-routeManager.addRouteConfiguration({
-  pluginId: pluginId,
-  routeId: validateRouteIdFromString('very-tall-own-scroll'),
-  route: '/very-tall-own-scroll',
-  priority: 0,
-  webComponent: 'very-tall-own-scroll',
-  guards: [],
-});
-
 console.log(window.location.pathname);
 // const matchedRoute = await routeManager.matchRoute(window.location.pathname);
 // if (matchedRoute === null) {

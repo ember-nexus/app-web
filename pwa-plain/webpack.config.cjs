@@ -18,25 +18,11 @@ module.exports = {
             }
           }
         ]
-      },
-      {
-        test: /\.css$/i,
-        use: [
-          // "style-loader",
-          "@teamsupercell/typings-for-css-modules-loader",
-          {
-            loader: "css-loader",
-            options: {
-              // modules: true,
-              exportType: "css-style-sheet",
-            }
-          }
-        ]
       }
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js', '.css']
+    extensions: ['.ts', '.js']
   },
   experiments: {
     outputModule: true,
