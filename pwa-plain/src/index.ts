@@ -3,6 +3,7 @@ import { Container } from 'typedi';
 import { RouteManager } from './Service/RouteManager';
 import { validatePluginIdFromString } from './Type/Definition/PluginId';
 import { validateRouteIdFromString } from './Type/Definition/RouteId';
+import {CorePlugin} from "./CorePlugin";
 
 export * as Error from './Error';
 export * as Page from './Page';
@@ -78,4 +79,6 @@ console.log(window.location.pathname);
 // actor.send({
 //   type: 'routeChange', route: '/test-2'
 // });
+
+Container.get(CorePlugin).init();
 
