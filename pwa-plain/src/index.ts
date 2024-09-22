@@ -5,6 +5,8 @@ import { validatePluginIdFromString } from './Type/Definition/PluginId';
 import { validateRouteIdFromString } from './Type/Definition/RouteId';
 import {CorePlugin} from "./CorePlugin";
 
+export * as EmberNexusWebSDK from '@ember-nexus/web-sdk';
+
 export * as Error from './Error';
 export * as Page from './Page';
 export * as Component from './Component';
@@ -12,6 +14,7 @@ export * as Machine from './Machine';
 export * as Service from './Service';
 export * as Type from './Type';
 export * as Style from './Style';
+export * as ThirdPartyCode from './ThirdPartyCode';
 export { Container };
 
 const routeManager = Container.get(RouteManager);

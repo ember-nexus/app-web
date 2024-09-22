@@ -14,12 +14,11 @@ const inputStyle = css`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    border: 1px solid orange;
-    padding: 5px;
+    padding: 0;
+    margin-bottom: 1rem;
   }
 
   .text-input > * {
-    border: 1px solid orange;
     padding: 0;
     margin: 0;
   }
@@ -27,6 +26,7 @@ const inputStyle = css`
   .row.label .label {
     margin: 0;
     padding: 0;
+    font-weight: bold;
   }
 
   .row.input {
@@ -42,8 +42,7 @@ const inputStyle = css`
   .row.input .icon-left,
   .row.input .icon-right {
     flex-grow: 0;
-    border: 1px solid orange;
-    padding: 5px;
+    padding: 0;
     margin: 0;
   }
 
@@ -60,24 +59,29 @@ const inputStyle = css`
   .row.description .description {
     margin: 0;
     padding: 0;
-    border: 1px solid orange;
   }
 
   .row.description .description .description-icon {
     display: inline-block;
     margin: 0;
-    padding: 5px;
-    border: 1px solid orange;
+    padding: 0;
   }
 
   .row.description .character-count {
     flex-grow: 0;
+    flex-shrink: 0;
     margin: 0;
     padding: 0;
-    border: 1px solid orange;
   }
 
 
+  ::slotted( [slot="icon-left"] ),
+  ::slotted( [slot="icon-right"] ) {
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
 
 
 `;

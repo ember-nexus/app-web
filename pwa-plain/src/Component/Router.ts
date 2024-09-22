@@ -23,7 +23,6 @@ class Router extends LitElement {
       this._state = snapshot.value;
       this.requestUpdate();
     });
-    console.log("Updated stuff :D");
   }
 
   handlePopStateEvent(): void{
@@ -68,7 +67,6 @@ class Router extends LitElement {
       route: newAbsoluteUrl.pathname,
     });
   }
-
 
   connectedCallback(): void {
     super.connectedCallback();

@@ -120,4 +120,18 @@ Requirements for pages:
 - Page configurations can communicate the following properties:
   - w
 
+### Login page state management
+
+variables:
+- username
+- password
+- meta: is form locked
+
+- init
+- editingLoginForm
+- handlingLoginRequest
+- loginSucceeded
+
+
+
 

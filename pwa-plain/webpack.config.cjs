@@ -22,7 +22,8 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
+    fullySpecified: false,
   },
   experiments: {
     outputModule: true,

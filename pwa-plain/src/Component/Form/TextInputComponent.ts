@@ -1,47 +1,67 @@
 import { LitElement, TemplateResult, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import {pageStyle} from "../../Style/PageStyle";
 import {inputStyle} from "../../Style/InputStyle";
+import {redispatchEvent} from "../../ThirdPartyCode";
 
 @customElement('ember-nexus-core-text-input')
 class TextInputComponent extends LitElement {
   static styles = [pageStyle, inputStyle];
+
+  @property()
+  label?: string;
+
+  @property()
+  value?: string;
+
+  @property()
+  description?: string;
+
+  @property({ attribute: 'character-count', type: Number })
+  characterCount?: number;
+
+  updateValue(event: InputEvent) {
+    const eventTarget = event.target as HTMLInputElement;
+    this.value = eventTarget.value;
+    redispatchEvent(this, event);
+  }
+
   render(): TemplateResult {
+    let characterCounter : TemplateResult | null = null;
+    if (this.characterCount && this.characterCount > 0) {
+      characterCounter = html`<p class="character-count">${this.value?.length ?? 0} / ${this.characterCount}</p>`;
+    }
+
     return html`<div class="text-input">
 
       <div class="row label">
-        <p class="label">Label</p>
+        <p class="label">${this.label}</p>
       </div>
       <div class="row input">
-        <div class="icon-left">LI</div>
-        <input placeholder="placeholder" />
-        <div class="icon-right">RI</div>
+        <slot name="icon-left"></slot>
+        <input
+          placeholder="placeholder"
+          @input=${this.updateValue}
+        />
+        <slot name="icon-right"></slot>
       </div>
       <div class="row description">
         <p class="description">
-          <span class="description-icon">DI</span>
-          Description
+          <slot name="icon-description"></slot>
+          ${this.description}
         </p>
-        <p class="character-count">0 / 64</p>
+        ${characterCounter}
       </div>
 
-
+<!--
       <div style="font-size:0.5rem">
-        <p>Label (above input, left aligned, bigger or thicker text)</p>
-        <p>Placeholder (in input)</p>
-        <p>Description (underneath input, left aligned)</p>
-        <p>Description icon, optional, aligned start of description</p>
-        <p>character count, if set (underneath right aligned)</p>
         <p>Error state: Red, diagonal stripes, icon</p>
         <p>WIP state: black, icon</p>
         <p>OK state: green, icon</p>
         <p>Disabled state: gray, icon</p>
-        <p>Input element itself</p>
-        <p>left input icon (inside input)</p>
-        <p>right input icon (inside input)</p>
         <p>should placeholder be moved above/underneath input field once text is entered?</p>
       </div>
-    </div>`;
+    </div>-->`;
   }
 }
 
