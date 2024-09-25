@@ -39,6 +39,10 @@ const inputStyle = css`
     flex-grow: 1;
   }
 
+  .row.input input:disabled {
+    border: 1px solid red;
+  }
+
   .row.input .icon-left,
   .row.input .icon-right {
     flex-grow: 0;

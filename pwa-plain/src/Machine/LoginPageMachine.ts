@@ -2,12 +2,15 @@ import { Container } from 'typedi';
 import { assign, fromPromise, setup } from 'xstate';
 
 import {EmberNexus} from "@ember-nexus/web-sdk/Service";
-import {createUniqueUserIdentifierFromString, Uuid} from "@ember-nexus/web-sdk/Type/Definition";
+import {createUniqueUserIdentifierFromString, Token} from "@ember-nexus/web-sdk/Type/Definition";
 
 export const loginPageMachine = setup({
   actors: {
-    handlingLoginRequest: fromPromise<Uuid | null, { username: string, password: string }>(async ({ input }) => {
-      return Container.get(EmberNexus).postRegister(createUniqueUserIdentifierFromString(input.username), input.password)
+    handlingLoginRequest: fromPromise<Token | null, { username: string, password: string }>(async ({ input }) => {
+      // return Container.get(EmberNexus).postRegister(createUniqueUserIdentifierFromString(input.username), input.password)
+      const token = await Container.get(EmberNexus).postToken(createUniqueUserIdentifierFromString(input.username), input.password);
+      console.log(['token', token]);
+      return token;
     }),
   },
   types: {

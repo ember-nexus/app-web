@@ -20,6 +20,9 @@ class TextInputComponent extends LitElement {
   @property({ attribute: 'character-count', type: Number })
   characterCount?: number;
 
+  @property({type: Boolean, reflect: true})
+  disabled: boolean = false;
+
   updateValue(event: InputEvent) {
     const eventTarget = event.target as HTMLInputElement;
     this.value = eventTarget.value;
@@ -41,6 +44,7 @@ class TextInputComponent extends LitElement {
         <slot name="icon-left"></slot>
         <input
           placeholder="placeholder"
+          ?disabled=${this.disabled}
           @input=${this.updateValue}
         />
         <slot name="icon-right"></slot>

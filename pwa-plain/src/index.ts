@@ -4,6 +4,7 @@ import { RouteManager } from './Service/RouteManager';
 import { validatePluginIdFromString } from './Type/Definition/PluginId';
 import { validateRouteIdFromString } from './Type/Definition/RouteId';
 import {CorePlugin} from "./CorePlugin";
+import {WebSdkConfiguration} from "@ember-nexus/web-sdk/Service";
 
 export * as EmberNexusWebSDK from '@ember-nexus/web-sdk';
 
@@ -82,6 +83,10 @@ console.log(window.location.pathname);
 // actor.send({
 //   type: 'routeChange', route: '/test-2'
 // });
+
+const webSdkConfiguration = Container.get(WebSdkConfiguration);
+webSdkConfiguration.setApiHost('https://reference-dataset.ember-nexus.dev');
+
 
 Container.get(CorePlugin).init();
 
