@@ -1,6 +1,8 @@
 const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: './src/index.ts',
@@ -18,7 +20,25 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.css$/,
+        use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name]-[hash][ext]'
+        }
+      },
+      {
+        test: /\.(svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'vector/[name]-[hash][ext]'
+        }
+      },
     ],
   },
   resolve: {
@@ -34,7 +54,8 @@ module.exports = {
     clean: true,
     library: {
       type: 'module'
-    }
+    },
+    hashDigestLength: 12
   },
   devtool: "source-map",
   performance: {
@@ -53,6 +74,7 @@ module.exports = {
         },
         extractComments: false,
       }),
+      new CssMinimizerPlugin()
     ],
   },
   plugins: [
@@ -61,5 +83,8 @@ module.exports = {
         { from: "./src/index.html", to: "index.html" }
       ],
     }),
+    new MiniCssExtractPlugin({
+      filename: "index.css"
+    })
   ]
 };

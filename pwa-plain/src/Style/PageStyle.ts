@@ -8,18 +8,23 @@ const pageStyle = css`
   :host {
     width: 100%;
     height: 100%;
-    --os-size: 10;
-    --os-track-bg: orange;
   }
 
   .page {
-    border: 5px solid deepskyblue;
+    display: flex;
+    justify-content: center;
+  }
+
+  .content {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .tall-element {
     width: 100%;
     height: 200px;
-    border: 5px solid mediumseagreen;
     padding: 10px;
   }
 `;

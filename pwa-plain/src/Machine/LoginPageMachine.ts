@@ -7,7 +7,6 @@ import {createUniqueUserIdentifierFromString, Token} from "@ember-nexus/web-sdk/
 export const loginPageMachine = setup({
   actors: {
     handlingLoginRequest: fromPromise<Token | null, { username: string, password: string }>(async ({ input }) => {
-      // return Container.get(EmberNexus).postRegister(createUniqueUserIdentifierFromString(input.username), input.password)
       const token = await Container.get(EmberNexus).postToken(createUniqueUserIdentifierFromString(input.username), input.password);
       console.log(['token', token]);
       return token;

@@ -92,7 +92,7 @@ class Router extends LitElement {
       routeWebComponent = 'ember-nexus-error-page-not-found';
     }
     routeWebComponent = unsafeStatic(routeWebComponent);
-    return html`<div style="border: 5px solid lightgray; padding: 20px;">
+    return html`<div>
       <${routeWebComponent}></${routeWebComponent}>
     </div>`;
   }

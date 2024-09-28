@@ -43,7 +43,6 @@ class TextInputComponent extends LitElement {
       <div class="row input">
         <slot name="icon-left"></slot>
         <input
-          placeholder="placeholder"
           ?disabled=${this.disabled}
           @input=${this.updateValue}
         />
