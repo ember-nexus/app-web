@@ -2,13 +2,21 @@ import {LitElement, TemplateResult, html, css} from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import iconArrowRight from '@mdi/svg/svg/arrow-right.svg';
 import iconArrowTopRight from '@mdi/svg/svg/arrow-top-right.svg';
+import {linkStyle} from "../../Style/LinkStyle";
 
 @customElement('ember-nexus-core-link-with-icon')
 class LinkWithIconComponent extends LitElement {
   static styles = [
-    css`div {
-      color: red;
-    }`
+    linkStyle,
+    css`
+      :host {
+        display: block;
+        width: 100%;
+      }
+      ember-nexus-core-icon {
+        display: inline-block;
+      }
+    `
   ];
 
   @property()
@@ -19,7 +27,7 @@ class LinkWithIconComponent extends LitElement {
 
   render(): TemplateResult {
     let icon = iconArrowRight;
-    if (true) {
+    if (false) {
       icon = iconArrowTopRight;
     }
     return html`

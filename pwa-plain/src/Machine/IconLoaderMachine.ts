@@ -7,7 +7,12 @@ export const iconLoaderMachine = setup({
       if (input.url === '') {
         throw 'empty url';
       }
-      return await fetch(input.url).then((res) => res.text()).then((text) => text);
+      return await fetch(input.url).then((res) => {
+        if (res.headers.get("content-type") !== 'image/svg+xml') {
+          throw 'unsupported content type';
+        }
+        return res.text()
+      }).then((text) => text);
     }),
   },
   guards: {
