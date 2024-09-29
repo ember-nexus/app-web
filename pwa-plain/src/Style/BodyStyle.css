@@ -11,3 +11,10 @@ body {
     margin: 0;
     padding: 0;
 }
+
+:root {
+    --page-content-offset-top: 0px;
+    --page-content-offset-left: 0px;
+    --page-content-offset-right: 0px;
+    --page-content-offset-bottom: 0px;
+}

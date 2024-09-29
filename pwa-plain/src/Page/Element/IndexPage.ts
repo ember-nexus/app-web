@@ -56,8 +56,10 @@ class LoginPage extends LitElement {
     return html`
       <div class="page">
         <div class="content">
-          <h1>Index</h1>
-          ${collection}
+          <div class="grid">
+            <h1>Index</h1>
+            ${collection}
+          </div>
         </div>
       </div>
     `;

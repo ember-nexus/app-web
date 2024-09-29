@@ -9,40 +9,42 @@ const collectionPageStyle = css`
     width: 100%;
     height: 100%;
     display: block;
-    container-type: inline-size;
-    container-name: host;
   }
 
   .page {
     display: flex;
     justify-content: center;
     background-color: #FBFBFE;
-    min-height: 100vh;
+    min-height: 100dvh;
+    padding: var(--page-content-offset-top, 0px) var(--page-content-offset-right, 0px) var(--page-content-offset-bottom, 0px) var(--page-content-offset-left, 0px);
   }
 
   .content {
     width: 100%;
+    container-type: inline-size;
+    container-name: content;
+  }
+
+  .grid {
     display: grid;
     align-content: start;
     grid-template-rows: auto;
     row-gap: 1rem;
   }
 
-  @container host (min-width: calc(40rem + 2rem)) {
-    .content {
+  @container content (min-width: calc(40rem + 2rem)) {
+    .grid {
       grid-template-columns: 1fr 40rem 1fr;
-      margin-top: 5rem;
     }
   }
 
-  @container host (max-width: calc(40rem + 2rem)) {
-    .content {
+  @container content (max-width: calc(40rem + 2rem)) {
+    .grid {
       grid-template-columns: 1rem minmax(0, 1fr) 1rem;
-      margin-top: 2rem;
     }
   }
 
-  .content > * {
+  .grid > * {
     grid-column: 2 / 3;
   }
 `;
