@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <ember-nexus-router></ember-nexus-router>
+    <script type="module">
+      import * as AppPluginExperimental from "https://cdn.jsdelivr.net/npm/@ember-nexus/app-plugin-experimental@0.0.11/dist/browser/index.js";
+    </script>
+    <div id="app">
+        <ember-nexus-router></ember-nexus-router>
+    </div>
 </body>
 </html>

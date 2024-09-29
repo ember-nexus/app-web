@@ -37,6 +37,15 @@ class CorePlugin {
       webComponent: 'ember-nexus-core-register-page',
       guards: [],
     });
+
+    this.routeManager.addRouteConfiguration({
+      pluginId: emberNexusCorePluginId,
+      routeId: validateRouteIdFromString('index'),
+      route: '/',
+      priority: 0,
+      webComponent: 'ember-nexus-core-index-page',
+      guards: [],
+    });
     return this;
   }
 

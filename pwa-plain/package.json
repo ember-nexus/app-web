@@ -23,6 +23,7 @@
   "license": "AGPL-3.0-only",
   "dependencies": {
     "@csstools/normalize.css": "^12.1.1",
+    "@ember-nexus/app-plugin-experimental": "^0.0.11",
     "@ember-nexus/web-sdk": "^0.0.60",
     "@fontsource/roboto": "^5.1.0",
     "@fontsource/roboto-mono": "^5.1.0",

@@ -27,7 +27,6 @@ class LoginPage extends LitElement {
       this._password = snapshot.context.password;
       this.requestUpdate();
     });
-    console.log("Updated stuff :D");
   }
 
   connectedCallback(): void {
@@ -45,7 +44,6 @@ class LoginPage extends LitElement {
   private _onUsernameChange(event: InputEvent) {
     const target = event.target as EventTarget;
     if (!('value' in target)) {
-      console.log('target has no value');
       return;
     }
     this.actor.send({
@@ -58,7 +56,6 @@ class LoginPage extends LitElement {
   private _onPasswordChange(event: InputEvent) {
     const target = event.target as EventTarget;
     if (!('value' in target)) {
-      console.log('target has no value');
       return;
     }
     this.actor.send({
