@@ -8,6 +8,7 @@ html {
     font-size: 20px;
     font-family: "Roboto";
     font-weight: 300;
+    background-color: var(--background-color);
 }
 
 body {
@@ -20,4 +21,5 @@ body {
     --page-content-offset-left: 0px;
     --page-content-offset-right: 0px;
     --page-content-offset-bottom: 0px;
+    --background-color: #fbfbfe;
 }

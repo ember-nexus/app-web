@@ -14,7 +14,7 @@ const collectionPageStyle = css`
   .page {
     display: flex;
     justify-content: center;
-    background-color: #FBFBFE;
+    background-color: var(--background-color);
     min-height: 100dvh;
     padding: var(--page-content-offset-top, 0px) var(--page-content-offset-right, 0px) var(--page-content-offset-bottom, 0px) var(--page-content-offset-left, 0px);
   }
@@ -30,6 +30,7 @@ const collectionPageStyle = css`
     align-content: start;
     grid-template-rows: auto;
     row-gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   @container content (min-width: calc(40rem + 2rem)) {

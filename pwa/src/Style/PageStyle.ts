@@ -14,7 +14,7 @@ const pageStyle = css`
   .page {
     display: flex;
     justify-content: center;
-    background-color: #FBFBFE;
+    background-color: var(--background-color);
     min-height: 100vh;
   }
 
