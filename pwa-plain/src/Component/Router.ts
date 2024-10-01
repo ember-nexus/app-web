@@ -1,12 +1,21 @@
-import { LitElement, TemplateResult } from 'lit';
+import {css, LitElement, TemplateResult} from 'lit';
 import {html, unsafeStatic} from 'lit/static-html.js';
 import { customElement } from 'lit/decorators.js';
 import {routerMachine} from "../Machine";
 import {Actor, createActor} from "xstate";
 import {RouteConfiguration} from "../Type/Definition/RouteConfiguration";
+import {linkStyle} from "../Style/LinkStyle";
 
 @customElement('ember-nexus-router')
 class Router extends LitElement {
+  static styles = [
+    linkStyle,
+    css`
+      :host {
+        --page-content-offset-top: 80px;
+      }
+    `
+  ];
 
   protected _routeConfiguration: RouteConfiguration | null;
 
@@ -94,6 +103,7 @@ class Router extends LitElement {
     routeWebComponent = unsafeStatic(routeWebComponent);
     return html`<div>
       <${routeWebComponent}></${routeWebComponent}>
+      <ember-nexus-core-toolbar></ember-nexus-core-toolbar>
     </div>`;
   }
 

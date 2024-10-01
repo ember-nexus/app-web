@@ -4,10 +4,13 @@
 @import '~@fontsource/roboto/700.css';
 @import '~@fontsource/roboto-mono';
 
-body {
+html {
     font-size: 20px;
     font-family: "Roboto";
     font-weight: 300;
+}
+
+body {
     margin: 0;
     padding: 0;
 }
