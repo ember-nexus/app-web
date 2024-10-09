@@ -1,10 +1,12 @@
-import {css, LitElement, TemplateResult} from 'lit';
-import {html, unsafeStatic} from 'lit/static-html.js';
+import { LitElement, TemplateResult, css } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import {routerMachine} from "../Machine";
-import {Actor, createActor} from "xstate";
-import {RouteConfiguration} from "../Type/Definition/RouteConfiguration";
-import {linkStyle} from "../Style/LinkStyle";
+import { html, unsafeStatic } from 'lit/static-html.js';
+import { StaticValue } from 'lit-html/static.js';
+import { Actor, createActor } from 'xstate';
+
+import { routerMachine } from '../Machine';
+import { linkStyle } from '../Style/LinkStyle';
+import { RouteConfiguration } from '../Type/Definition/RouteConfiguration';
 
 @customElement('ember-nexus-router')
 class Router extends LitElement {
@@ -14,7 +16,7 @@ class Router extends LitElement {
       :host {
         --page-content-offset-top: 80px;
       }
-    `
+    `,
   ];
 
   protected _routeConfiguration: RouteConfiguration | null;
@@ -34,7 +36,7 @@ class Router extends LitElement {
     });
   }
 
-  handlePopStateEvent(): void{
+  handlePopStateEvent(): void {
     console.log('(popstate) Location changed to: ', window.location.pathname);
     this.actor.send({
       type: 'routeChange',
@@ -42,7 +44,7 @@ class Router extends LitElement {
     });
   }
 
-  handleLinkClickEvent(event: PointerEvent): void{
+  handleLinkClickEvent(event: PointerEvent): void {
     const target = event.target;
     if (target === null) {
       return;
@@ -94,7 +96,7 @@ class Router extends LitElement {
   }
 
   render(): TemplateResult {
-    let routeWebComponent : any = null;
+    let routeWebComponent: string | StaticValue | null = null;
     if (this._routeConfiguration) {
       routeWebComponent = this._routeConfiguration.webComponent as string;
     } else {
@@ -106,7 +108,6 @@ class Router extends LitElement {
       <ember-nexus-core-toolbar></ember-nexus-core-toolbar>
     </div>`;
   }
-
 }
 
 export { Router };

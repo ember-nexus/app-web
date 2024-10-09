@@ -16,7 +16,8 @@ const collectionPageStyle = css`
     justify-content: center;
     background-color: var(--background-color);
     min-height: 100dvh;
-    padding: var(--page-content-offset-top, 0px) var(--page-content-offset-right, 0px) var(--page-content-offset-bottom, 0px) var(--page-content-offset-left, 0px);
+    padding: var(--page-content-offset-top, 0px) var(--page-content-offset-right, 0px)
+      var(--page-content-offset-bottom, 0px) var(--page-content-offset-left, 0px);
   }
 
   .content {

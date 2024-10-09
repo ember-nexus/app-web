@@ -50,7 +50,6 @@ const inputStyle = css`
     margin: 0;
   }
 
-
   .row.description {
     display: flex;
     align-items: stretch;
@@ -78,16 +77,13 @@ const inputStyle = css`
     padding: 0;
   }
 
-
-  ::slotted( [slot="icon-left"] ),
-  ::slotted( [slot="icon-right"] ) {
+  ::slotted([slot='icon-left']),
+  ::slotted([slot='icon-right']) {
     padding: 0;
     margin: 0;
     flex-shrink: 0;
     flex-grow: 0;
   }
-
-
 `;
 
 export { inputStyle };

@@ -9,14 +9,14 @@ const linkStyle = css`
   a:link,
   a:visited {
     text-decoration: none;
-    color: #1A1A1A;
+    color: #1a1a1a;
   }
 
   a:hover,
   a:focus,
   a:active {
     text-decoration: none;
-    color: #FF073A;
+    color: #ff073a;
   }
 `;
 

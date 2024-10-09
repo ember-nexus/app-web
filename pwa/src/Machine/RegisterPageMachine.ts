@@ -1,18 +1,18 @@
 import { EmberNexus } from '@ember-nexus/web-sdk/Service';
-import { Token, createUniqueUserIdentifierFromString } from '@ember-nexus/web-sdk/Type/Definition';
+import { Uuid, createUniqueUserIdentifierFromString } from '@ember-nexus/web-sdk/Type/Definition';
 import { Container } from 'typedi';
 import { assign, fromPromise, setup } from 'xstate';
 
-export const loginPageMachine = setup({
+export const registerPageMachine = setup({
   actors: {
-    handlingLoginRequest: fromPromise<Token | null, { uniqueUserIdentifier: string; password: string }>(
+    handlingRegisterRequest: fromPromise<Uuid, { uniqueUserIdentifier: string; password: string }>(
       async ({ input }) => {
-        const token = await Container.get(EmberNexus).postToken(
+        const uuid = await Container.get(EmberNexus).postRegister(
           createUniqueUserIdentifierFromString(input.uniqueUserIdentifier),
           input.password,
         );
-        console.log(['token', token]);
-        return token;
+        console.log(['uuid', uuid]);
+        return uuid;
       },
     ),
   },
@@ -24,11 +24,11 @@ export const loginPageMachine = setup({
     },
     events: {} as
       | { type: 'inputChange'; uniqueUserIdentifier: string; password: string }
-      | { type: 'submitLoginData' }
+      | { type: 'submitRegisterData' }
       | { type: 'clearError' },
   },
 }).createMachine({
-  id: 'login-page-machine',
+  id: 'register-page-machine',
   context: () => ({
     uniqueUserIdentifier: '',
     password: '',
@@ -39,48 +39,48 @@ export const loginPageMachine = setup({
     Initial: {
       always: [
         {
-          target: 'EditingLoginForm',
+          target: 'EditingRegisterForm',
         },
       ],
     },
-    EditingLoginForm: {
+    EditingRegisterForm: {
       on: {
         inputChange: {
           actions: assign({
             uniqueUserIdentifier: ({ event }) => event.uniqueUserIdentifier,
             password: ({ event }) => event.password,
           }),
-          target: 'EditingLoginForm',
+          target: 'EditingRegisterForm',
         },
         clearError: {
           actions: assign({
             error: () => null,
           }),
-          target: 'EditingLoginForm',
+          target: 'EditingRegisterForm',
         },
-        submitLoginData: {
-          target: 'HandlingLoginRequest',
+        submitRegisterData: {
+          target: 'HandlingRegisterRequest',
         },
       },
     },
-    HandlingLoginRequest: {
+    HandlingRegisterRequest: {
       invoke: {
-        src: 'handlingLoginRequest',
+        src: 'handlingRegisterRequest',
         input: ({ context }) => ({
           uniqueUserIdentifier: context.uniqueUserIdentifier,
           password: context.password,
         }),
         onDone: {
-          target: 'LoginSucceeded',
+          target: 'RegisterSucceeded',
         },
         onError: {
-          target: 'EditingLoginForm',
+          target: 'EditingRegisterForm',
           actions: assign({
             error: ({ event }) => String(event.error),
           }),
         },
       },
     },
-    LoginSucceeded: {},
+    RegisterSucceeded: {},
   },
 });

@@ -1,7 +1,8 @@
-import {LitElement, TemplateResult, html, css} from 'lit';
-import { customElement } from 'lit/decorators.js';
-import {linkStyle} from "../../Style/LinkStyle";
 import menuIcon from '@mdi/svg/svg/menu.svg';
+import { LitElement, TemplateResult, css, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
+
+import { linkStyle } from '../../Style/LinkStyle';
 
 @customElement('ember-nexus-core-toolbar')
 class ToolbarComponent extends LitElement {
@@ -28,7 +29,9 @@ class ToolbarComponent extends LitElement {
         gap: 1rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.12),
+          0 1px 2px rgba(0, 0, 0, 0.24);
       }
 
       .divider {
@@ -38,7 +41,7 @@ class ToolbarComponent extends LitElement {
         margin-left: -0.5rem;
         margin-right: -0.5rem;
       }
-    `
+    `,
   ];
 
   render(): TemplateResult {

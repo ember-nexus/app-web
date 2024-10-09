@@ -1,8 +1,9 @@
-import {LitElement, TemplateResult, html, css} from 'lit';
-import { customElement, property } from 'lit/decorators.js';
 import iconArrowRight from '@mdi/svg/svg/arrow-right.svg';
 import iconArrowTopRight from '@mdi/svg/svg/arrow-top-right.svg';
-import {linkStyle} from "../../Style/LinkStyle";
+import { LitElement, TemplateResult, css, html } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+
+import { linkStyle } from '../../Style/LinkStyle';
 
 @customElement('ember-nexus-core-link-with-icon')
 class LinkWithIconComponent extends LitElement {
@@ -16,7 +17,7 @@ class LinkWithIconComponent extends LitElement {
       ember-nexus-core-icon {
         display: inline-block;
       }
-    `
+    `,
   ];
 
   @property()

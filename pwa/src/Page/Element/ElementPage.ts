@@ -1,41 +1,38 @@
-import { Collection } from '@ember-nexus/web-sdk/Type/Definition';
+import { Element, Uuid, validateUuidFromString } from '@ember-nexus/web-sdk/Type/Definition';
 import { LitElement, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { Actor, createActor } from 'xstate';
 
-import { indexPageMachine } from '../../Machine';
+import { elementPageMachine } from '../../Machine';
 import { collectionPageStyle } from '../../Style/CollectionPageStyle';
 
-@customElement('ember-nexus-core-index-page')
-class IndexPage extends LitElement {
+@customElement('ember-nexus-core-element-page')
+class ElementPage extends LitElement {
   static styles = [collectionPageStyle];
 
   protected _error: string | null;
 
   protected _state: string | null;
-  protected _page: number;
-  protected _pageSize: number;
-  protected _collection: Collection | null;
+  protected _element: Element | null;
+  protected _elementId: Uuid | null;
 
-  protected actor: Actor<typeof indexPageMachine>;
+  protected actor: Actor<typeof elementPageMachine>;
 
   setupActorSubscription(): void {
     this.actor.subscribe((snapshot) => {
       this._error = snapshot.context.error;
       this._state = snapshot.value;
-      this._page = snapshot.context.page;
-      this._pageSize = snapshot.context.pageSize;
-      this._collection = snapshot.context.collection;
+      this._element = snapshot.context.element;
       this.requestUpdate();
     });
   }
 
   connectedCallback(): void {
     super.connectedCallback();
-    this.actor = createActor(indexPageMachine, {
+    this._elementId = validateUuidFromString('0940ad38-e030-4d6d-ae77-54b40610d1bd');
+    this.actor = createActor(elementPageMachine, {
       input: {
-        page: 1,
-        pageSize: 25,
+        elementId: this._elementId,
       },
     });
     this.setupActorSubscription();
@@ -48,20 +45,12 @@ class IndexPage extends LitElement {
   }
 
   render(): TemplateResult {
-    const collection: TemplateResult[] = [];
-    if (this._collection !== null) {
-      for (let i = 0; i < this._collection.nodes.length; i++) {
-        collection.push(
-          html`<ember-nexus-default-card element-id="${this._collection.nodes[i].id}"></ember-nexus-default-card>`,
-        );
-      }
-    }
     return html`
       <div class="page">
         <div class="content">
           <div class="grid">
-            <h1>Index</h1>
-            ${collection}
+            <h1>Element</h1>
+            <ember-nexus-default-card element-id="${this._elementId}"></ember-nexus-default-card>
           </div>
         </div>
       </div>
@@ -69,4 +58,4 @@ class IndexPage extends LitElement {
   }
 }
 
-export { IndexPage };
+export { ElementPage };

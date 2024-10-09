@@ -37,8 +37,8 @@ const pageStyle = css`
     position: absolute;
     width: 300px;
     height: 300px;
-    left:0;
-    top:0;
+    left: 0;
+    top: 0;
     transform: translate(-70%, -30%) rotate(-45deg);
   }
 
@@ -52,8 +52,8 @@ const pageStyle = css`
     position: absolute;
     width: 300px;
     height: 300px;
-    right:0;
-    bottom:0;
+    right: 0;
+    bottom: 0;
     transform: translate(40%, 30%) rotate(90deg);
   }
 
@@ -63,7 +63,9 @@ const pageStyle = css`
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
     position: relative;
   }
 
@@ -73,12 +75,11 @@ const pageStyle = css`
     border-radius: 0.5rem;
     padding: 1rem;
     background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.12),
+      0 1px 2px rgba(0, 0, 0, 0.24);
     position: relative;
   }
-
-
-
 `;
 
 export { pageStyle };

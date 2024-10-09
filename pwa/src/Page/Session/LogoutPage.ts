@@ -1,6 +1,7 @@
 import { LitElement, TemplateResult, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import {pageStyle} from "../../Style/PageStyle";
+
+import { pageStyle } from '../../Style/PageStyle';
 
 @customElement('ember-nexus-core-logout-page')
 class LogoutPage extends LitElement {

@@ -29,7 +29,7 @@
  * @param event The event to re-dispatch.
  * @return Whether or not the event was dispatched (if cancelable).
  */
-export function redispatchEvent(element: Element, event: Event) {
+export function redispatchEvent(element: Element, event: Event): boolean {
   // For bubbling events in SSR light DOM (or composed), stop their propagation
   // and dispatch the copy.
   if (event.bubbles && (!element.shadowRoot || event.composed)) {

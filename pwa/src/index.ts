@@ -1,8 +1,9 @@
 import 'reflect-metadata';
+import { BrowserEventHandler } from '@ember-nexus/web-sdk/BrowserEvent';
+import { WebSdkConfiguration } from '@ember-nexus/web-sdk/Service';
 import { Container } from 'typedi';
-import {CorePlugin} from "./CorePlugin";
-import {WebSdkConfiguration} from "@ember-nexus/web-sdk/Service";
-import {BrowserEventHandler} from "@ember-nexus/web-sdk/BrowserEvent";
+
+import { CorePlugin } from './CorePlugin';
 
 export * as EmberNexusWebSDK from '@ember-nexus/web-sdk';
 
@@ -18,11 +19,8 @@ export { Container };
 
 import './Style/BodyStyle.css';
 
-
 const webSdkConfiguration = Container.get(WebSdkConfiguration);
 webSdkConfiguration.setApiHost('https://reference-dataset.ember-nexus.dev');
 Container.get(BrowserEventHandler).addBrowserEventListeners(document.getElementById('app') as HTMLElement);
 
-
 Container.get(CorePlugin).init();
-

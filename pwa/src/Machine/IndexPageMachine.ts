@@ -1,12 +1,11 @@
+import { EmberNexus } from '@ember-nexus/web-sdk/Service';
+import { Collection } from '@ember-nexus/web-sdk/Type/Definition';
 import { Container } from 'typedi';
 import { assign, fromPromise, setup } from 'xstate';
 
-import {EmberNexus} from "@ember-nexus/web-sdk/Service";
-import {Collection} from "@ember-nexus/web-sdk/Type/Definition";
-
 export const indexPageMachine = setup({
   actors: {
-    handlingRequest: fromPromise<Collection, { page: number, pageSize: number }>(async ({ input }) => {
+    handlingRequest: fromPromise<Collection, { page: number; pageSize: number }>(async ({ input }) => {
       const collection = await Container.get(EmberNexus).getIndex(input.page, input.pageSize);
       console.log(['collection', collection]);
       return collection;
@@ -19,8 +18,7 @@ export const indexPageMachine = setup({
       collection: Collection | null;
       error: null | string;
     },
-    events: {} as { type: 'pageChange'; page: number; } |
-      { type: 'pageSizeChange'; pageSize: number; }
+    events: {} as { type: 'pageChange'; page: number } | { type: 'pageSizeChange'; pageSize: number },
   },
 }).createMachine({
   id: 'index-page-machine',
@@ -44,7 +42,7 @@ export const indexPageMachine = setup({
         src: 'handlingRequest',
         input: ({ context }) => ({
           page: context.page,
-          pageSize: context.pageSize
+          pageSize: context.pageSize,
         }),
         onDone: {
           target: 'Loaded',
@@ -58,38 +56,38 @@ export const indexPageMachine = setup({
             error: ({ event }) => String(event.error),
           }),
         },
-      }
+      },
     },
     Loaded: {
       on: {
         pageChange: {
           actions: assign({
-            page: ({ event }) => event.page
+            page: ({ event }) => event.page,
           }),
           target: 'Loading',
         },
         pageSizeChange: {
           actions: assign({
-            pageSize: ({ event }) => event.pageSize
+            pageSize: ({ event }) => event.pageSize,
           }),
           target: 'Loading',
-        }
+        },
       },
     },
     Error: {
       on: {
         pageChange: {
           actions: assign({
-            page: ({ event }) => event.page
+            page: ({ event }) => event.page,
           }),
           target: 'Loading',
         },
         pageSizeChange: {
           actions: assign({
-            pageSize: ({ event }) => event.pageSize
+            pageSize: ({ event }) => event.pageSize,
           }),
           target: 'Loading',
-        }
+        },
       },
     },
   },
