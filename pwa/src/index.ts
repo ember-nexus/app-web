@@ -17,6 +17,7 @@ export * as Style from './Style';
 export * as ThirdPartyCode from './ThirdPartyCode';
 export { Container };
 
+import '@ember-nexus/uix/Style/index.css';
 import './Style/BodyStyle.css';
 
 const webSdkConfiguration = Container.get(WebSdkConfiguration);

@@ -1,4 +1,8 @@
 import menuIcon from '@mdi/svg/svg/menu.svg';
+import accountIcon from '@mdi/svg/svg/account.svg';
+import loginIcon from '@mdi/svg/svg/login.svg';
+import logoutIcon from '@mdi/svg/svg/logout.svg';
+import alertCircleOutlineIcon from '@mdi/svg/svg/alert-circle-outline.svg';
 import { LitElement, TemplateResult, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
@@ -20,8 +24,9 @@ class ToolbarComponent extends LitElement {
       .toolbar {
         min-width: var(--toolbar-size);
         height: var(--toolbar-size);
-        border: 1px solid #000;
+        //border: 1px solid #000;
         border-radius: 5px;
+        border-radius: var(--border-radius);
         background-color: #fff;
         display: flex;
         align-items: center;
@@ -29,15 +34,13 @@ class ToolbarComponent extends LitElement {
         gap: 1rem;
         padding-left: 0.5rem;
         padding-right: 0.5rem;
-        box-shadow:
-          0 1px 3px rgba(0, 0, 0, 0.12),
-          0 1px 2px rgba(0, 0, 0, 0.24);
+        box-shadow: var(--shadow-2);
       }
 
       .divider {
         width: 1px;
         height: 100%;
-        background-color: #000;
+        background-color: #ddd;
         margin-left: -0.5rem;
         margin-right: -0.5rem;
       }
@@ -45,13 +48,56 @@ class ToolbarComponent extends LitElement {
   ];
 
   render(): TemplateResult {
+
+    const data = [
+      {
+        type: 'menuEntry',
+        name: 'Account',
+        icon: accountIcon,
+        children: [
+          {
+            name: 'Login',
+            icon: loginIcon,
+          },
+          {
+            name: 'Logout',
+            icon: logoutIcon,
+          }
+        ]
+      },
+      {
+        type: 'divider'
+      },
+      {
+        type: 'menuEntry',
+        name: 'Settings',
+        icon: menuIcon
+      }
+    ];
+
+    let topLevelMenuEntries: TemplateResult[] = [];
+
+    for (let i in data) {
+      let newMenuEntry: TemplateResult;
+
+      switch (data[i].type) {
+        case 'menuEntry':
+          newMenuEntry = html`<ember-nexus-core-icon src="${data[i].icon}"></ember-nexus-core-icon>`;
+          break;
+        case 'divider':
+          newMenuEntry = html`<div class="divider"></div>`;
+          break;
+        default:
+          newMenuEntry = html`<ember-nexus-core-icon src="${alertCircleOutlineIcon}"></ember-nexus-core-icon>`;
+      }
+
+      topLevelMenuEntries.push(newMenuEntry)
+    }
+
+
     return html`
       <div class="toolbar">
-        <ember-nexus-core-icon src="${menuIcon}"></ember-nexus-core-icon>
-        <ember-nexus-core-icon src="${menuIcon}"></ember-nexus-core-icon>
-        <ember-nexus-core-icon src="${menuIcon}"></ember-nexus-core-icon>
-        <div class="divider"></div>
-        <ember-nexus-core-icon src="${menuIcon}"></ember-nexus-core-icon>
+        ${topLevelMenuEntries}
       </div>
     `;
   }
