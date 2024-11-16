@@ -8,6 +8,7 @@ import { CorePlugin } from './CorePlugin';
 export * as EmberNexusWebSDK from '@ember-nexus/web-sdk';
 
 export * as Error from './Error';
+export * as EventManager from './EventManager';
 export * as Page from './Page';
 export * as Component from './Component';
 export * as Machine from './Machine';

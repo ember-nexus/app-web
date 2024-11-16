@@ -1,11 +1,10 @@
 import { LitElement, TemplateResult, css, html } from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 import { linkStyle } from '../../../Style/LinkStyle';
 
 @customElement('ember-nexus-core-toolbar-action-element')
 class ToolbarActionElementComponent extends LitElement {
-
   @property()
   name?: string;
 

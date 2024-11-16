@@ -1,9 +1,9 @@
-import menuIcon from '@mdi/svg/svg/menu.svg';
 import accountIcon from '@mdi/svg/svg/account.svg';
-import loginIcon from '@mdi/svg/svg/login.svg';
-import bellIcon from '@mdi/svg/svg/bell.svg';
-import logoutIcon from '@mdi/svg/svg/logout.svg';
 import alertCircleOutlineIcon from '@mdi/svg/svg/alert-circle-outline.svg';
+import bellIcon from '@mdi/svg/svg/bell.svg';
+import loginIcon from '@mdi/svg/svg/login.svg';
+import logoutIcon from '@mdi/svg/svg/logout.svg';
+import menuIcon from '@mdi/svg/svg/menu.svg';
 // import circleSmallIcon from '@mdi/svg/svg/circle-small.svg';
 // import triangleSmallDownIcon from '@mdi/svg/svg/triangle-small-down.svg';
 import { LitElement, TemplateResult, css, html } from 'lit';
@@ -39,10 +39,19 @@ class ToolbarComponent extends LitElement {
         //padding-left: 0.5rem;
         //padding-right: 0.5rem;
         box-shadow: var(--shadow-2);
-        box-shadow: 0 0 4px 0 rgba(0, 0, 0, 12%), 0 2px 4px 0 rgba(0, 0, 0, 8%), 0 0 1px 0 rgba(0, 0, 0, 40%); /* quant */
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-        box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 4px 0px, rgba(90, 125, 188, 0.05) 0px 4px 16px 0px; /* 52 < */
+        box-shadow:
+          0 0 4px 0 rgba(0, 0, 0, 12%),
+          0 2px 4px 0 rgba(0, 0, 0, 8%),
+          0 0 1px 0 rgba(0, 0, 0, 40%); /* quant */
+        box-shadow:
+          rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+          rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        box-shadow:
+          rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+          rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        box-shadow:
+          rgba(67, 71, 85, 0.27) 0px 0px 4px 0px,
+          rgba(90, 125, 188, 0.05) 0px 4px 16px 0px; /* 52 < */
         //box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; /* 72 < */
         //box-shadow: 0px 12px 28px 0px rgba(0, 0, 0, 0.2), 0px 2px 4px 0px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(255, 255, 255, 0.05) inset; /* sleek */
       }
@@ -91,7 +100,6 @@ class ToolbarComponent extends LitElement {
   ];
 
   render(): TemplateResult {
-
     const data = [
       {
         type: 'menuEntry',
@@ -110,29 +118,29 @@ class ToolbarComponent extends LitElement {
             id: 'account.logout',
             name: 'Logout',
             icon: logoutIcon,
-          }
-        ]
+          },
+        ],
       },
       {
         type: 'menuEntry',
         id: 'bell',
         name: 'Notifications',
-        icon: bellIcon
+        icon: bellIcon,
       },
       {
-        type: 'divider'
+        type: 'divider',
       },
       {
         type: 'menuEntry',
         id: 'setting',
         name: 'Settings',
-        icon: menuIcon
-      }
+        icon: menuIcon,
+      },
     ];
 
-    let topLevelMenuEntries: TemplateResult[] = [];
+    const topLevelMenuEntries: TemplateResult[] = [];
 
-    for (let i in data) {
+    for (const i in data) {
       let newMenuEntry: TemplateResult;
 
       switch (data[i].type) {
@@ -154,15 +162,10 @@ class ToolbarComponent extends LitElement {
           newMenuEntry = html`<ember-nexus-core-icon src="${alertCircleOutlineIcon}"></ember-nexus-core-icon>`;
       }
 
-      topLevelMenuEntries.push(newMenuEntry)
+      topLevelMenuEntries.push(newMenuEntry);
     }
 
-
-    return html`
-      <div class="toolbar">
-        ${topLevelMenuEntries}
-      </div>
-    `;
+    return html` <div class="toolbar">${topLevelMenuEntries}</div> `;
   }
 }
 

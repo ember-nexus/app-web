@@ -4,3 +4,7 @@ export * as RouteId from './RouteId';
 export * as RouteGuardFunction from './RouteGuardFunction';
 export * as RouteToWebComponentFunction from './RouteToWebComponentFunction';
 export * as RouteConfiguration from './RouteConfiguration';
+export * as Event from './Event';
+export * as EventHandler from './EventHandler';
+export * as EventHandlerIdentifier from './EventHandlerIdentifier';
+export * as EventIdentifier from './EventIdentifier';
