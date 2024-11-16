@@ -4,7 +4,7 @@ import loginIcon from '@mdi/svg/svg/login.svg';
 import bellIcon from '@mdi/svg/svg/bell.svg';
 import logoutIcon from '@mdi/svg/svg/logout.svg';
 import alertCircleOutlineIcon from '@mdi/svg/svg/alert-circle-outline.svg';
-import circleSmallIcon from '@mdi/svg/svg/circle-small.svg';
+// import circleSmallIcon from '@mdi/svg/svg/circle-small.svg';
 // import triangleSmallDownIcon from '@mdi/svg/svg/triangle-small-down.svg';
 import { LitElement, TemplateResult, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
@@ -137,12 +137,15 @@ class ToolbarComponent extends LitElement {
 
       switch (data[i].type) {
         case 'menuEntry':
-          newMenuEntry = html`<div class="menuEntry">
-            <ember-nexus-core-icon src="${data[i].icon}"></ember-nexus-core-icon>
-            <div class="subMenuDot">
-              <ember-nexus-core-icon src="${circleSmallIcon}"></ember-nexus-core-icon>
-            </div>
-          </div>`;
+          // newMenuEntry = html`<div class="menuEntry">
+          //   <ember-nexus-core-icon src="${data[i].icon}"></ember-nexus-core-icon>
+          //   <div class="subMenuDot">
+          //     <ember-nexus-core-icon src="${circleSmallIcon}"></ember-nexus-core-icon>
+          //   </div>
+          // </div>`;
+          newMenuEntry = html`<ember-nexus-core-toolbar-action-element name="Test Name">
+            <ember-nexus-core-icon src="${data[i].icon}" slot="icon"></ember-nexus-core-icon>
+          </ember-nexus-core-toolbar-action-element>`;
           break;
         case 'divider':
           newMenuEntry = html`<div class="divider"></div>`;
