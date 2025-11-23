@@ -6,5 +6,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 ### Changed
-- Restart `app-web` project from scratch.
-- Change license to AGPL-3.0-only.
+- Init project.
