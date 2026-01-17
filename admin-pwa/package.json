@@ -14,7 +14,8 @@
         "daisyui": "^5.5.14",
         "lit": "^3.3.2",
         "lucide-static": "^0.562.0",
-        "tailwindcss": "^4.1.18"
+        "tailwindcss": "^4.1.18",
+        "zod": "^4.3.5"
     },
     "devDependencies": {
         "@types/node": "^25.0.9",

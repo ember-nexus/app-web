@@ -1,13 +1,30 @@
 import {LitElement, TemplateResult, html, unsafeCSS} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {customElement, state} from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { PackagePlus } from 'lucide-static';
+import {Module, parseModulesResponse} from "../Type";
 
 import {indexStyles} from '../Style/index.js';
 
 @customElement('admin-pwa-page-overview')
 class OverviewPage extends LitElement {
     static styles = [unsafeCSS(indexStyles)];
+
+    @state()
+    private modules: Module[] = [];
+
+    async loadModules(): Promise<void>
+    {
+        const res = await fetch("/api/modules");
+        const content = await res.text();
+        const parsedContent = parseModulesResponse(content);
+        this.modules = parsedContent.modules;
+    }
+
+    connectedCallback(): void {
+        super.connectedCallback();
+        this.loadModules();
+    }
 
     render(): TemplateResult {
         return html`
@@ -16,6 +33,17 @@ class OverviewPage extends LitElement {
                     <button class="btn btn-sm">${unsafeHTML(PackagePlus)} Add Package</button>
                 </div>
                 <p>Hello world :D</p>
+
+                <h3>Installed modules:</h3>
+
+                ${this.modules.length === 0
+                    ? html`<p>Loading modules...</p>`
+                    : html`
+                        <div class="flex flex-col gap-2">
+                            ${this.modules.map(module => html`<admin-pwa-component-module-card .module="${module}"></admin-pwa-component-module-card>`)}
+                        </div>
+                    `
+                }
             </admin-pwa-component-layout>
         `;
     }

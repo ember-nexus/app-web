@@ -10,8 +10,11 @@
 
 @plugin "daisyui/theme" {
     name: "dark";
+    prefersdark: true;
     --color-primary: #ff073a;
     --color-primary-content: #fff;
+    --color-neutral: #fff;
+    --color-neutral-content: #000;
 }
 
 @theme {
@@ -30,3 +33,9 @@ html, :root {
 *, *:before, *:after {
     box-sizing: inherit;
 }
+
+.badge-npm {
+    --badge-color: #CB3837;
+    --badge-fg: #ffffff;
+}
+

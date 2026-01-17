@@ -3,6 +3,7 @@ import { html, render, type TemplateResult } from 'lit';
 export * as Component from './Component/index.js';
 export * as Page from './Page/index.js';
 export * as Style from './Style/index.js';
+export * as Type from './Type/index.js';
 
 // Set this to the subfolder your app is deployed in (e.g., '/my-app')
 // If deployed at root, just use '/'
