@@ -11,7 +11,6 @@
 }
 
 :80 {
-	root * /var/www/html/public
 	encode zstd br gzip
 	header {
 		-Server
@@ -21,9 +20,33 @@
 		max_size 101MiB
 	}
 	log {
-	    no_hostname
+		no_hostname
 		output stdout
 		format json
 	}
-	php_server
+
+	@api path /api*
+	handle @api {
+        root * /var/www/html/admin-api/public
+        try_files {path} /index.php
+        php_server
+	}
+
+    @admin path /admin*
+    handle @admin {
+        root * /var/www/html/admin-pwa/dist
+        try_files {path} /index.html
+        file_server
+    }
+
+	@frontend not path /api* /admin*
+	handle @frontend {
+		root * /var/www/app-web
+		try_files {path} /index.html
+		@missingIndex not file /var/www/app-web/index.html
+		handle @missingIndex {
+			redir /admin/getting-started 302
+		}
+		file_server
+	}
 }

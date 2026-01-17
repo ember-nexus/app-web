@@ -11,6 +11,7 @@ services:
     #      target: production
     volumes:
       - .:/var/www/html
+      - ./app-web-volume:/var/www/app-web
     tty: true
     ports:
       - 80:80
