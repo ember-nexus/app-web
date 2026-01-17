@@ -1,0 +1,29 @@
+{
+	auto_https off
+	admin off
+	servers {
+		protocols h1
+	}
+	log {
+		output stdout
+		format json
+	}
+}
+
+:80 {
+	root * /var/www/html/public
+	encode zstd br gzip
+	header {
+		-Server
+		-Set-Cookie
+	}
+	request_body {
+		max_size 101MiB
+	}
+	log {
+	    no_hostname
+		output stdout
+		format json
+	}
+	php_server
+}
