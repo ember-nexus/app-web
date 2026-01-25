@@ -2,7 +2,7 @@ import {LitElement, html, unsafeCSS, TemplateResult} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import {Module} from "../Type";
-import { Package, Tag, SquareArrowOutUpRight } from 'lucide-static';
+import { Package, Tag, SquareArrowOutUpRight, Ghost, Scale } from 'lucide-static';
 import {indexStyles} from "../Style";
 
 @customElement('admin-pwa-component-module-card')
@@ -17,13 +17,12 @@ export class ModuleCard extends LitElement {
             return html`<div class="card bg-base-100 shadow-sm">Loading...</div>`;
         }
 
-
         let details: Array<TemplateResult> = [];
 
         if (this.module.source === 'NPM') {
             details.push(html`
                 <a
-                    href="https://www.npmjs.com/package/${this.module.packageIdentifier}"
+                    href="https://www.npmjs.com/package/${this.module.name}"
                     target="_blank"
                     class="badge badge-sm badge-npm select-none shadow-xs"
                     title="module sourced from NPM"
@@ -35,7 +34,7 @@ export class ModuleCard extends LitElement {
         } else {
             details.push(html`
                 <span
-                    class="badge badge-sm badge-outline badge-neutral select-none shadow-xs"
+                    class="badge badge-sm badge-pack select-none shadow-xs"
                     title="module is manually provided as package"
                 >
                     ${unsafeHTML(Package.replace('class="lucide lucide-package"', 'class="h-[1em] w-auto"'))}
@@ -54,6 +53,16 @@ export class ModuleCard extends LitElement {
                 </span>
             `);
 
+        details.push(html`
+                <span
+                    class="badge badge-sm badge-outline badge-neutral select-none shadow-xs"
+                    title="license of module"
+                >
+                    ${unsafeHTML(Scale.replace('class="lucide lucide-scale"', 'class="h-[1em] w-auto"'))}
+                    ${this.module.license}
+                </span>
+            `);
+
         if (this.module.homepage !== null) {
             details.push(html`
                 <a
@@ -67,10 +76,21 @@ export class ModuleCard extends LitElement {
                 </a>
             `);
         }
+        if (this.module.transitive) {
+            details.push(html`
+                <span
+                    class="badge badge-sm badge-outline badge-neutral select-none shadow-xs"
+                    title="module is an indirect dependency of another module"
+                >
+                    ${unsafeHTML(Ghost.replace('class="lucide lucide-ghost"', 'class="h-[1em] w-auto"'))}
+                    transitive
+                </span>
+            `);
+        }
 
         return html`
             <div class="card bg-base-100 shadow-sm">
-                <div class="card-body">
+                <div class="card-body p-4">
                     <h2 class="card-title">${this.module.name}</h2>
                     <div class="text-sm flex gap-1">
                         ${details}

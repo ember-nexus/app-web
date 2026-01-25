@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - echo "Hello world! :D"
+    silent: true
+
+  dev:build:
+    cmds:
+      - docker compose build
+
+  dev:up:
+    cmds:
+      - docker compose up -d
+
+  dev:down:
+    cmds:
+      - docker compose down
+
+  dev:cli:
+    cmds:
+      - docker compose exec web-app /bin/bash

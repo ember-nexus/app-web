@@ -39,3 +39,8 @@ html, :root {
     --badge-fg: #ffffff;
 }
 
+.badge-pack {
+    --badge-color: #9aedfe; /* based on https://github.com/sharkdp/vivid/blob/master/themes/snazzy.yml#L121 */
+    --badge-fg: #000000;
+}
+

@@ -11,6 +11,9 @@ class OverviewPage extends LitElement {
     static styles = [unsafeCSS(indexStyles)];
 
     @state()
+    private loading: boolean = true;
+
+    @state()
     private modules: Module[] = [];
 
     async loadModules(): Promise<void>
@@ -19,6 +22,7 @@ class OverviewPage extends LitElement {
         const content = await res.text();
         const parsedContent = parseModulesResponse(content);
         this.modules = parsedContent.modules;
+        this.loading = false;
     }
 
     connectedCallback(): void {
@@ -32,11 +36,10 @@ class OverviewPage extends LitElement {
                 <div slot="pageActions">
                     <button class="btn btn-sm">${unsafeHTML(PackagePlus)} Add Package</button>
                 </div>
-                <p>Hello world :D</p>
 
                 <h3>Installed modules:</h3>
 
-                ${this.modules.length === 0
+                ${this.loading
                     ? html`<p>Loading modules...</p>`
                     : html`
                         <div class="flex flex-col gap-2">
