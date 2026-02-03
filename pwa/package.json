@@ -10,13 +10,19 @@
     },
     "devDependencies": {
         "typescript": "~5.9.3",
-        "vite": "^7.3.1"
+        "vite": "^7.3.1",
+        "@types/node": "^25.0.9",
+        "terser": "^5.44.1",
+        "ts-patch": "^3.0.2",
+        "tslib": "^2.8.1",
+        "tsutils": "~3.21"
     },
     "dependencies": {
-        "@ember-nexus/app-core": "^0.0.9",
-        "@ember-nexus/app-plugin-template": "^0.0.7",
-        "@rollup/pluginutils": "^5.3.0",
-        "babel-plugin-istanbul": "^7.0.1",
-        "postcss-modules-scope": "^3.2.1"
+        "@ember-nexus/app-core": "^0.1.0",
+        "@ember-nexus/app-plugin-template": "^0.1.5",
+        "@tailwindcss/vite": "^4.1.18",
+        "daisyui": "^5.5.14",
+        "lit": "^3.3.2",
+        "tailwindcss": "^4.1.18"
     }
 }
