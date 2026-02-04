@@ -7,12 +7,9 @@ export default defineConfig({
     build: {
         outDir: 'dist',
         sourcemap: true,
-        minify: false,
-        lib: {
-            entry: './src/index.ts',
-            formats: ['es']
-        },
+        minify: 'terser',
         cssCodeSplit: true,
+        cssMinify: true,
         rollupOptions: {
             input: [
                 resolve(__dirname, './index.html'),

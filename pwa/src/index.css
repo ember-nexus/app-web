@@ -1,3 +1,8 @@
+@import "@ember-nexus/app-plugin-template/global.css";
+@import "tailwindcss";
+@plugin "daisyui";
+
+
 html {
     font-size: 20px;
 }

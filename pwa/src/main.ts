@@ -4,7 +4,7 @@ import {init as templateInit, optimizeDynamicConfigurations as templateOptimizeD
 
 export * from "./Router.js";
 
-//import './index.css';
+import './index.css';
 
 declare global {
     interface Window {

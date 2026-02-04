@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "@ember-nexus/app-core": "^0.1.0",
-        "@ember-nexus/app-plugin-template": "^0.1.7",
+        "@ember-nexus/app-plugin-template": "^0.1.9",
         "@tailwindcss/vite": "^4.1.18",
         "daisyui": "^5.5.14",
         "lit": "^3.3.2",
