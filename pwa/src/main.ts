@@ -1,4 +1,3 @@
-import {indexStyles} from "@ember-nexus/app-plugin-template";
 import {init as coreInit, optimizeDynamicConfigurations as coreOptimizeDynamicConfigurations, initEventListeners} from "@ember-nexus/app-core";
 import {ApiConfiguration, ServiceResolver} from "@ember-nexus/app-core/Service";
 import {init as templateInit, optimizeDynamicConfigurations as templateOptimizeDynamicConfigurations} from "@ember-nexus/app-plugin-template";
@@ -14,7 +13,6 @@ declare global {
 }
 
 async function init(){
-    console.log(indexStyles);
     const appNode = document.getElementById('app');
     if (appNode === null) {
         throw new Error("Unable to find div with id 'app'.");

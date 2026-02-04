@@ -7,3 +7,7 @@ html, :root {
 *, *:before, *:after {
     box-sizing: inherit;
 }
+
+ember-nexus-template-page-index, :root, :host {
+    --color-primary: red !important;
+}
